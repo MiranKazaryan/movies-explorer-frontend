@@ -1,0 +1,33 @@
+.footer {
+    background-color: #202020;
+    max-width: 1280px;
+    min-height: 94px;
+    margin: auto;
+}
+
+.footer__container {
+    border-top: solid 1px #424242;
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer__links{
+    display: flex;
+}
+.footer__link {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
+
+.footer__text {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    color: #FFFFFF;
+}
