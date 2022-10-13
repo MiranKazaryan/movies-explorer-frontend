@@ -1,0 +1,114 @@
+.promo {
+    background: #272727;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: auto;
+    max-width: 1200px;
+    min-height: 427px;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.promo__title {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 50px;
+    line-height: 58px;
+    text-align: center;
+    letter-spacing: -0.04em;
+    color: #FFFFFF;
+    margin-top: 160px;
+    padding: 0;
+    max-width: 730px;
+}
+
+.promo__container {
+    list-style: none;
+    display: flex;
+    margin: auto;
+    padding: 0px;
+    justify-content: center;
+    max-width: 1200px;
+    max-height: 493px;
+}
+
+.promo__button {
+    background-color: #303030;
+    text-decoration: none;
+    border-radius: 10px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    height: 36px;
+    width: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #FFFFFF;
+}
+
+.promo__container-item {
+    margin-right: 10px;
+}
+
+.promo__container-item:last-child {
+    margin: 0px;
+}
+
+@media screen and (max-width: 767px) {
+    .promo__container {
+        max-width: 728px;
+        max-height: 834px;
+    }
+
+    .promo__title {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 40px;
+        line-height: 52px;
+        text-align: center;
+        letter-spacing: -0.04em;
+        color: #FFFFFF;
+    }
+
+    .promo__button {
+        font-size: 12px;
+    }
+
+    .promo {
+        margin: 0 20px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+
+    .promo__button {
+        height: 26px;
+        width: 82px;
+        font-size: 10px;
+    }
+
+    .promo__title {
+        font-family: 'Inter';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 29px;
+        line-height: 37px;
+         text-align: center;
+        letter-spacing: -0.04em;
+        color: #FFFFFF;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .promo__container {
+        max-width: 292px;
+        max-height: 586px;
+    }
+}

@@ -1,11 +1,14 @@
 import logo from "../../images/logo.svg";
 import { NavLink } from "react-router-dom";
+import { useState, useContext } from "react";
+import UserContext from "../../context/UserContext";
+
 import "./Header.css";
 function Header() {
-  const loggedIn = true;
+  const isLoggedIn = useContext(UserContext);
   return (
     <>
-      {!loggedIn ? (
+      {!isLoggedIn ? (
         <nav className="header header__main">
           <NavLink to={"/"} className="header__logo">
             <img src={logo} alt="логотип сайта в виде щита на зеленом фоне" />
@@ -32,7 +35,6 @@ function Header() {
               className="header__logo"
             />
           </NavLink>
-
           <input id="menu__toggle" type="checkbox" />
           <label className="header__btn" for="menu__toggle">
             <span></span>
