@@ -8,7 +8,7 @@ function Portfolio() {
         <ol className='portfolio__item'>
           <a 
             className='portfolio__item-link'
-            href='https://' 
+            href='https://mirankazaryan.github.io/how-to-learn/' 
             target='_blank' 
             rel='noopener noreferrer'>
             <p className='portfolio__item-text'>Статичный сайт</p>
@@ -18,7 +18,7 @@ function Portfolio() {
         <ol className='portfolio__item'>
           <a 
             className='portfolio__item-link'
-            href='https://' 
+            href='https://mirankazaryan.github.io/russian-travel/' 
             target='_blank' 
             rel='noopener noreferrer'>
             <p className='portfolio__item-text'>Адаптивный сайт</p>
@@ -28,7 +28,7 @@ function Portfolio() {
         <ol className='portfolio__item'>
           <a 
             className='portfolio__item-link'
-            href='https://' 
+            href='https://mrnkzrn.nomoredomains.sbs/' 
             target='_blank' 
             rel='noopener noreferrer'>
             <p className='portfolio__item-text'>Одностраничное приложение</p>

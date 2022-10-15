@@ -1,8 +1,10 @@
-import './SavedMovies.css';
-import SearchForm from '../SearchForm/SearchForm';
-import { useState, useEffect } from 'react';
-import Preloader from '../Preloader/Preloader';
-import MoviesCardList from '../MoviesCardList/MoviesCardList';
+import "./SavedMovies.css";
+import SearchForm from "../SearchForm/SearchForm";
+import { useState, useEffect } from "react";
+import Preloader from "../Preloader/Preloader";
+import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 function SavedMovies() {
   const [isLoading, setIsLoading] = useState(true);
@@ -14,10 +16,12 @@ function SavedMovies() {
   }, []);
   return (
     <>
+      <Header></Header>
       <SearchForm />
-      { isLoading && <Preloader /> }
-      { !isLoading && <MoviesCardList /> }    
-    </>    
+      {isLoading && <Preloader />}
+      {!isLoading && <MoviesCardList />}
+      <Footer></Footer>
+    </>
   );
 }
 

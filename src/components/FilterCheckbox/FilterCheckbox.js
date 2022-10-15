@@ -1,8 +1,8 @@
-import './FilterCheckbox.css';
-import { useState } from 'react';
+import "./FilterCheckbox.css";
+import { useState } from "react";
 
 function FilterCheckbox() {
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(true);
 
   return (
     <label className="filtercheckbox">
@@ -13,8 +13,8 @@ function FilterCheckbox() {
         type="checkbox"
         className="invisible-filtercheckbox"
       />
+      <span className="visible-filtercheckbox" />
       Короткометражки
-      <span className="visible-filtercheckbox" />    
     </label>
   );
 }

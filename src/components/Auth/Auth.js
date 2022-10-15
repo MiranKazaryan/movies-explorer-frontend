@@ -29,7 +29,7 @@ function Auth({ onLogin }) {
                   type='text'
                   minLength='2'
                   maxLength='30'
-                  value='Василий'
+                  value='Миран'
                   required />
                 <span className='auth__form-error'></span>
               </label>

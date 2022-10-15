@@ -24,6 +24,7 @@
     font-weight: 500;
     font-size: 24px;
     line-height: 29px;
+    color: #fff;
   }
   
   .auth__form {
@@ -61,6 +62,8 @@
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
+    background-color: #2F2F2F;
+    color: #fff;
   }
   
   .auth__form-input:focus {
@@ -84,7 +87,7 @@
     margin: 0 0 17px;
     border: none;
     border-radius: 3px;
-    background-color: rgb(43, 224, 128);
+    background-color: #4285F4;
     font-family: 'Inter';
     font-weight: 500;
     font-size: 14px;
@@ -103,13 +106,13 @@
     font-size: 14px;
     line-height: 17px;
     text-align: center;
-    color: #a0a0a0;
+    color: #8B8B8B
   }
   
   .auth__form-link {
     text-decoration: none;
     margin-left: 6px;
-    color: #2be080;
+    color: #4285F4;
   }
   
   .auth__form-link:hover {

@@ -13,7 +13,7 @@ import NotFound from "../NotFound/NotFound";
 import UserContext from "../../context/UserContext";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
   const navigate = useNavigate();
   function onLogout() {
     setIsLoggedIn(false);
@@ -25,19 +25,17 @@ function App() {
   }
   return (
     <div className="App">
-      <Header></Header>
-      <UserContext.Provider value = {isLoggedIn}>
+      <UserContext.Provider value={isLoggedIn}>
         <Routes>
           <Route path={"/"} element={<Main />}></Route>
           <Route path={"/movies"} element={<Movies />}></Route>
           <Route path={"/saved-movies"} element={<SavedMovies />}></Route>
-          <Route path={"/profile"} element={<Profile />}></Route>
+          <Route path={"/profile"} element={<Profile onLogout={onLogout}/>}></Route>
           <Route path={"/signin"} element={<Login onLogin={onLogin} />}></Route>
           <Route path={"/signup"} element={<Register />}></Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </UserContext.Provider>
-      <Footer></Footer>
     </div>
   );
 }

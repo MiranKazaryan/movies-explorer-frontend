@@ -13,8 +13,9 @@ function Profile({ onLogout }) {
 
   return (
     <>
+    <Header></Header>
     <section className="profile">
-      <h2 className='profile__heading'>Привет, Виталий!</h2>
+      <h2 className='profile__heading'>Привет, Миран!</h2>
       <form className='profile__form' onSubmit={handleSubmit}>
         <div className='profile__form-container'>
           <fieldset className='profile__form-fields'>
