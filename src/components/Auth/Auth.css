@@ -12,6 +12,7 @@
     flex-direction: column;
     justify-content: center;
     line-height: 0;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
   }
   
   .auth__logo {

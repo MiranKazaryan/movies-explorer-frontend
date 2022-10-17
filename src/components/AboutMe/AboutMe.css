@@ -24,6 +24,7 @@
     border-bottom: 1px #DADADA solid;
     font-weight: 400;
     font-size: 22px;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     line-height: 27px;
     letter-spacing: -0.04em;
     color: #FFFFFF;
@@ -33,6 +34,7 @@
     margin: 0;
     font-weight: 400;
     font-size: 50px;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     line-height: 58px;
     letter-spacing: -0.04em;
     color: #FFFFFF;
@@ -42,6 +44,7 @@
     margin: 18px 0 26px;
     font-weight: 500;
     font-size: 18px;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     line-height: 20px;
     color: #FFFFFF;
   }
@@ -50,6 +53,7 @@
     margin: 0;
     font-weight: 400;
     font-size: 14px;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     line-height: 22px;
     color: #FFFFFF;
   }
@@ -59,6 +63,7 @@
     margin: 0;
     font-weight: 500;
     font-size: 14px;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     line-height: 17px;
     color: #FFFFFF;
   }

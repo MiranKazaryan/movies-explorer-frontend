@@ -8,6 +8,7 @@
     margin: 0 0 34px 0;
     font-weight: 400;
     font-size: 18px;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     line-height: 20px;
     color: #8B8B8B
   }
@@ -39,6 +40,7 @@
     color: #FFFFFF;
     font-weight: 400;
     font-size: 30px;
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     line-height: 50px;
     letter-spacing: -0.04em;
   }
