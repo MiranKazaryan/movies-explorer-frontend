@@ -58,11 +58,18 @@
     border: none;
     outline: none;
     background-color: white;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     font-weight: 400;
     font-size: 11px;
     line-height: 13px;
     background-color: #202020;
+    opacity: .8;
+    margin-left: 5px;
+  }
+  .profile__form-input:focus{
+    background-color: #2F2F2F;
+    border-bottom: 1px solid rgb(43, 224, 128);
+    opacity: .8;
   }
   
   .profile__form-input-error {
@@ -83,7 +90,7 @@
     padding: 0;
     border: none;
     background-color: transparent;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 13px;
@@ -112,7 +119,7 @@
     border: none;
     border-radius: 3px;
     background-color: rgb(43, 224, 128);
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;

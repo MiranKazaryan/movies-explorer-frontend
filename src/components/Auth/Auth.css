@@ -58,7 +58,7 @@
     border: none;
     border-bottom: 1px solid rgb(232, 232, 232);
     outline: none;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
@@ -68,6 +68,7 @@
   
   .auth__form-input:focus {
     border-bottom: 1px solid rgb(43, 224, 128);
+    opacity: .8;
   }
   
   .auth__form-input-invalid {
@@ -88,7 +89,7 @@
     border: none;
     border-radius: 3px;
     background-color: #4285F4;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     font-weight: 500;
     font-size: 14px;
     line-height: 17px;

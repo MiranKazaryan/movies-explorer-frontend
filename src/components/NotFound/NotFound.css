@@ -43,7 +43,7 @@
     padding: 0;
     border: none;
     background-color: transparent;
-    font-family: 'Inter';
+    font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
