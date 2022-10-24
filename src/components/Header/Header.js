@@ -4,11 +4,10 @@ import { useState, useContext } from "react";
 import UserContext from "../../context/UserContext";
 
 import "./Header.css";
-function Header() {
-  const isLoggedIn = useContext(UserContext);
+function Header({loggedIn}) {
   return (
     <>
-      {!isLoggedIn ? (
+      {!loggedIn ? (
         <nav className="header header__main">
           <NavLink to={"/"} className="header__logo">
             <img src={logo} alt="логотип сайта в виде щита на зеленом фоне" />
@@ -68,51 +67,3 @@ function Header() {
 }
 
 export default Header;
-
-/*
-          <NavLink to={"/"} className="header__logo">
-            <img
-              src={logo}
-              alt="логотип сайта в виде щита на зеленом фоне"
-              className="header__logo"
-            />
-          </NavLink>
-          
-          <input id="menu__toggle" type="checkbox" />
-          <label class="menu__btn" for="menu__toggle">
-            <span></span>
-          </label>
-          <ul class="menu__box">
-            <li>
-              <NavLink to={"/movies"} className="header__link menu__item">
-                Фильмы
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={"/saved-movies"} className="header__link menu__item">
-                Сохранённые фильмы
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to={"/profile"} className="header__profile">
-                Аккаунт
-              </NavLink>
-            </li>
-          </ul>
-          <ul className="header__container">
-            <li className="header__container-item">
-              <NavLink to={"/movies"} className="header__link">
-                Фильмы
-              </NavLink>
-            </li>
-            <li className="header__container-item">
-              <NavLink to={"/saved-movies"} className="header__link">
-                Сохранённые фильмы
-              </NavLink>
-            </li>
-          </ul>
-          <div className="header__icon">
-            <NavLink to={"/profile"} className="header__profile">
-              Аккаунт
-            </NavLink>
-          </div>*/

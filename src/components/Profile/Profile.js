@@ -1,72 +1,113 @@
-import './Profile.css';
-import Header from '../Header/Header';
-import { useState } from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+import "./Profile.css";
+import useFormWithValidation from "../../hooks/useValidationForm";
 
-function Profile({ onLogout }) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [errorMessage, setErrorMEssage] = useState('');
+function Profile({
+  currentUser,
+  handleProfileUpdate,
+  onLogout,
+  handleEdit,
+  isActiveForUpdate,
+  setIsActiveForUpdate,
+}) {
+  const { values, handleChange, errors, isValid, resetForm, updateValue } =
+    useFormWithValidation();
 
-  function handleSubmit(event) {
-    event.preventDefault();
-    setErrorMEssage('При обновлении профиля произошла ошибка.');
+  React.useEffect(() => {
+    setIsActiveForUpdate(false);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  React.useEffect(() => {
+    updateValue("name", currentUser.name);
+    updateValue("email", currentUser.email);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentUser]);
+
+  const isButtonDisabled =
+    !isValid ||
+    (values.name === currentUser.name && values.email === currentUser.email);
+
+  const handleEditProfile = (e) => {
+    e.preventDefault();
+    handleEdit();
+  };
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    handleProfileUpdate(values.name, values.email);
+    resetForm();
   }
 
   return (
-    <>
-    <Header></Header>
     <section className="profile">
-      <h2 className='profile__heading'>Привет, Миран!</h2>
-      <form className='profile__form' onSubmit={handleSubmit}>
-        <div className='profile__form-container'>
-          <fieldset className='profile__form-fields'>
-            <label className='profile__form-label'>Имя
-              <input 
-                id='name'
-                name='name'
-                type='text'
-                className='profile__form-input'
-                minLength='2'
-                maxLength='30'
-                autoComplete='on'
+      <h1 className="profile__heading">Привет, {currentUser.name}!</h1>
+      <form className="profile__form" onSubmit={handleSubmit} noValidate>
+        <div className="profile__form-container">
+          <fieldset className="profile__form-fields">
+            <label className="profile__form-label">
+              Имя{" "}
+              <input
+                className="profile__form-input"
+                type="text"
+                name="name"
+                minLength="2"
+                maxLength="50"
                 required
-                disabled={!isEditing}
+                disabled={!isActiveForUpdate}
+                value={values.name || ""}
+                onChange={handleChange}
               />
             </label>
-            <label className='profile__form-label'>E-mail
-              <input 
-                id='email'
-                name='email'
-                type='text'
-                className='profile__form-input'
-                autoComplete='on'
+
+            <span className="profile__input-error">{errors.name}</span>
+            <label className="profile__form-label">
+              E-mail{" "}
+              <input
+                className="profile__form-input"
+                type="email"
+                name="email"
+                minLength="2"
+                maxLength="254"
                 required
-                disabled={!isEditing}
+                disabled={!isActiveForUpdate}
+                value={values.email || ""}
+                onChange={handleChange}
               />
             </label>
+
+            <span className="profile__form-input-error">{errors.email}</span>
           </fieldset>
         </div>
-        <div className='profile__form-buttons'>
-          <span className='profile__form-input-error'>{errorMessage || ''}</span>
-        {
-          isEditing ?
-            <button
-              className={`profile__form-save-button ${errorMessage !== '' && 'profile__form-save-button_disabled'}`}
-              type='submit'>Сохранить</button> :
-            <>
-              <button 
-                className='profile__form-button profile__account-edit'
-                type='button'
-                onClick={() => setIsEditing(true)}>Редактировать</button>
-              <button 
-                className='profile__form-button profile__account-exit'
-                type='button'
-                onClick={onLogout}>Выйти из аккаунта</button>
-            </>
-        }
-        </div>
+
+        {!isActiveForUpdate ? (
+          <button
+            className="profile__form-button profile__account-edit"
+            onClick={handleEditProfile}
+          >
+            Редактировать
+          </button>
+        ) : (
+          <button
+            type="submit"
+            disabled={isButtonDisabled}
+            className="profile__form-save-button"
+          >
+            Сохранить
+          </button>
+        )}
       </form>
+      {!isActiveForUpdate && (
+        <Link
+          to="/signin"
+          className="profile__form-button profile__account-exit"
+          onClick={onLogout}
+        >
+          Выйти из аккаунта
+        </Link>
+      )}
     </section>
-    </>    
   );
 }
 

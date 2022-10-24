@@ -10,6 +10,7 @@
   line-height: 18px;
   cursor: pointer;
   color: #FFF;
+
 }
 
 .invisible-filtercheckbox {
@@ -30,17 +31,19 @@
   border-radius: 20px;
   position: relative;
   z-index: 0;
-  margin-right: 12px;
+  right: 12px;
 }
-
+.invisible-filtercheckbox:hover{
+  cursor: pointer;
+}
 /* circle unchecked */
 .visible-filtercheckbox::before {
-  width: 8px;
-  height: 8px;
+  width: 15px;
+  height: 15px;
   content: "";
   position: absolute;
-  top: 6px;
-  left: 6px;
+  top: 3px;
+  left: 5px;
   border-radius: 50%;
   background-color: rgb(245, 245, 245);
   transition: 0.2s linear;
@@ -48,12 +51,14 @@
 
 /* background checked */
 .invisible-filtercheckbox:checked+.visible-filtercheckbox {
-  background: rgb(43, 224, 128);
+
 }
 
 /* circle checked */
 .invisible-filtercheckbox:checked+.visible-filtercheckbox::before {
-  background: rgb(255, 255, 255);
+
+  background: #2BE080;
+
   transform: translateX(16px);
 }
 

@@ -1,15 +1,16 @@
 import "./FilterCheckbox.css";
 import { useState } from "react";
 
-function FilterCheckbox() {
-  const [isChecked, setIsChecked] = useState(true);
+function FilterCheckbox({
+  checked,
+  onChange
+  }) {
 
   return (
     <label className="filtercheckbox">
       <input
-        onChange={() => {
-          setIsChecked(!isChecked);
-        }}
+        onChange={onChange}
+        checked={checked}
         type="checkbox"
         className="invisible-filtercheckbox"
       />
