@@ -47,7 +47,22 @@
   outline: none;
   margin-left: 10px;
 }
+.search__input-error {
+  color: #EE3465;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  margin: 6px 6px;
+  max-width: 358px;
+  display: block;
+  min-height: 12px;
+}
 
+.search__input-error_hidden {
+  display: none;
+}
 .searchform__submit:hover {
   background-color: rgba(43, 224, 128, .8);
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./MoviesCard.css";
 
 function MoviesCard({
@@ -9,25 +9,32 @@ function MoviesCard({
 }) {
   const isSavedMoviesPage = window.location.pathname === "/saved-movies";
   const savedMovie = savedMovies.find((i) => i.movieId === movie.id);
+  const [click, setClick] = useState(false);
 
   function handleCardClick() {
-    if (savedMovie) {
-      handleDeleteMovie(savedMovie);
-    } else {
-      handleSaveMovie({
-        nameRU: movie.nameRU || movie.nameEN,
-        image: `https://api.nomoreparties.co${movie.image.url}`,
-        trailerLink: movie.trailerLink,
-        duration: movie.duration,
-        country: movie.country || "null",
-        director: movie.director || "null",
-        year: movie.year,
-        description: movie.description,
-        thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
-        movieId: movie.id,
-        nameEN: movie.nameEN || "null",
-      });
+    setClick(!click);
+    if(click === true){
+      if (savedMovie) {
+        handleDeleteMovie(savedMovie);
+        setClick(false);
+      } else {
+        handleSaveMovie({
+          nameRU: movie.nameRU || movie.nameEN,
+          image: `https://api.nomoreparties.co${movie.image.url}`,
+          trailerLink: movie.trailerLink,
+          duration: movie.duration,
+          country: movie.country || "null",
+          director: movie.director || "null",
+          year: movie.year,
+          description: movie.description,
+          thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
+          movieId: movie.id,
+          nameEN: movie.nameEN || "null",
+        });
+        setClick(false);
+      }
     }
+    
   }
 
   function timeCalculate(minute) {

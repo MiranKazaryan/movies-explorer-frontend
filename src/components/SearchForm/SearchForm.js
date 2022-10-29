@@ -7,9 +7,11 @@ function SearchForm({
   checked,
   onCheckClick,
   initialSearchQueryValues,
-  isActiveForUpdate,
+  isActiveForUpdate, 
+  validQuery,
+  isValid
 }) {
-  const [query, setQuery] = useState(initialSearchQueryValues);
+  const [query, setQuery] = useState(initialSearchQueryValues || null);
 
   function handleQueryChange(e) {
     setQuery(e.target.value);
@@ -17,6 +19,7 @@ function SearchForm({
 
   function handleSubmit(e) {
     e.preventDefault();
+    validQuery(query);
     onSearch(query);
   }
 
@@ -32,12 +35,14 @@ function SearchForm({
             placeholder="Фильм"
             onChange={handleQueryChange}
             disabled={!isActiveForUpdate}
+            value={query}
             required
           />
           <button className="searchform__submit" type="submit">
             Найти
           </button>
         </div>
+        <span className={!isValid ? "search__input-error" : "search__input-error_hidden"}>Нужно ввести ключевое слово</span>
         <FilterCheckbox checked={checked} onChange={onCheckClick} />
       </form>
     </section>

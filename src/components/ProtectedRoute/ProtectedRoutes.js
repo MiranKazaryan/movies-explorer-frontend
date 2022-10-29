@@ -1,9 +1,19 @@
 import React from "react";
 import { Outlet, Navigate } from "react-router-dom";
 
-const ProtectedRoutes = ({loggedIn}) => {
+const useAuth=()=>{
+    const user=localStorage.getItem('loggedIn')
+    if(user){
+      return true
+    } else {
+      return false
+    }
+  }
+
+const ProtectedRoutes = (props) => {
+    const auth=useAuth()
     return (
-        loggedIn === false ? <Navigate to="/" /> : <Outlet/>
+        auth  ? <Outlet/>:<Navigate to="/" />  
     )
 };
 

@@ -24,7 +24,9 @@ import InfoToolTip from "../InfoToolTip/InfoToolTip";
 function App() {
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(null);
+  const [loggedIn, setLoggedIn] = useState(
+    localStorage.getItem("loggedIn") || false
+  );
   const [currentUser, setCurrentUser] = useState({});
   const [status, setStatus] = useState(false);
   const [isInfoTooltipOpen, setIsInfoTooltipOpen] = useState(false);
@@ -44,11 +46,12 @@ function App() {
       .getUser()
       .then((res) => {
         setCurrentUser(res);
-
         setLoggedIn(true);
+        localStorage.setItem("loggedIn", "true");
       })
       .catch((err) => {
         setLoggedIn(false);
+        handleLogout();
         setCurrentUser({});
         setSavedMovies([]);
         setAllMovies([]);
@@ -57,6 +60,7 @@ function App() {
 
   //Подгружаем все фильмы в localStorage
   function getMovies() {
+    tokenCheck();
     setIsLoading(true);
     moviesApi
       .getMovies()
@@ -68,12 +72,17 @@ function App() {
         setErrorMessage(err.message);
         setStatus(false);
         setIsInfoTooltipOpen(true);
+        setIsLoading(false);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-    setIsLoading(false);
   }
 
   //Подгружаем сохраненные фильмы
   function getSavedMovies() {
+    tokenCheck();
+    setIsLoading(true);
     mainApi
       .getMovies()
       .then((movies) => {
@@ -81,19 +90,19 @@ function App() {
           (movie) => movie.owner === currentUser._id
         );
         setSavedMovies(moviesToShow);
+        setIsLoading(false);
         localStorage.setItem("saved-movies", JSON.stringify(moviesToShow));
       })
       .catch((err) => {
-
         setErrorMessage(errorText);
         setStatus(false);
         setIsInfoTooltipOpen(true);
+        setIsLoading(false);
       });
   }
 
   useEffect(() => {
     if (loggedIn) {
-      navigate('/saved-movies');
       getSavedMovies();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -101,6 +110,7 @@ function App() {
 
   //Сохранение фильмов
   function handleSaveMovie(movie) {
+    tokenCheck();
     mainApi
       .saveMovie(movie)
       .then((movie) => {
@@ -116,11 +126,12 @@ function App() {
 
   //Удаление фильмов из сохраненных
   function handleDeleteMovie(movie) {
+    tokenCheck();
     mainApi
       .deleteMovie(movie._id)
       .then(() => {
         setSavedMovies((state) => state.filter((c) => c._id !== movie._id));
-        localStorage.setItem("saved-movies", JSON.stringify(movie));
+        localStorage.setItem("saved-movies", JSON.stringify(savedMovies));
       })
       .catch((err) => {
         setErrorMessage(errorText);
@@ -163,6 +174,7 @@ function App() {
   }
 
   function handleUpdateProfile(name, email) {
+    tokenCheck();
     setIsActiveForUpdate(false);
     mainApi
       .editProfile(name, email)
@@ -270,7 +282,7 @@ function App() {
                 }
               />
               <Route
-                path="saved-movies"
+                path="/saved-movies"
                 loggedIn={loggedIn}
                 element={
                   <>
@@ -295,7 +307,6 @@ function App() {
                   <>
                     <Header loggedIn={loggedIn} />
                     <Profile
-                      currentUser={currentUser}
                       handleProfileUpdate={handleUpdateProfile}
                       onLogout={handleLogout}
                       handleEdit={onProfileEdit}
@@ -309,6 +320,7 @@ function App() {
 
             <Route exact path="*" element={<NotFound />}></Route>
           </Routes>
+
           <InfoToolTip
             status={status}
             isOpen={isInfoTooltipOpen}

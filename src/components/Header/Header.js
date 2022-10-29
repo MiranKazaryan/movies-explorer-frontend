@@ -1,10 +1,10 @@
 import logo from "../../images/logo.svg";
-import { NavLink } from "react-router-dom";
-import { useState, useContext } from "react";
-import UserContext from "../../context/UserContext";
+import { NavLink, useLocation } from "react-router-dom";
 
 import "./Header.css";
 function Header({loggedIn}) {
+  const location=useLocation().pathname;
+
   return (
     <>
       {!loggedIn ? (
@@ -18,8 +18,8 @@ function Header({loggedIn}) {
                 Регистрация
               </NavLink>
             </li>
-            <li className="header__container-login">
-              <NavLink to={"/signin"} className="header__link">
+            <li >
+              <NavLink to={"/signin"} className="header__link header__container-login">
                 Войти
               </NavLink>
             </li>
@@ -27,7 +27,7 @@ function Header({loggedIn}) {
         </nav>
       ) : (
         <nav className="header">
-          <NavLink to={"/"} className="header__logo">
+          <NavLink to={"/"} >
             <img
               src={logo}
               alt="логотип сайта в виде щита на зеленом фоне"
@@ -40,22 +40,22 @@ function Header({loggedIn}) {
           </label>
           <ul className="header__container">
             <li className="header__container-item">
-              <NavLink to={"/"} className="header__link">
+              <NavLink to={"/"} className={`header__link ${location==='/' ? "header__link_active" : undefined}`}>
                 Главная
               </NavLink>
             </li>
             <li className="header__container-item">
-              <NavLink to={"/movies"} className="header__link">
+              <NavLink to={"/movies"} className={`header__link ${location==='/movies' ? "header__link_active" : undefined}`} >
                 Фильмы
               </NavLink>
             </li>
             <li className="header__container-item">
-              <NavLink to={"/saved-movies"} className="header__link">
+              <NavLink to={"/saved-movies"} className={`header__link ${location==='/saved-movies' ? "header__link_active" : undefined}`} >
                 Сохранённые фильмы
               </NavLink>
             </li>
             <li className="header__container-item">
-              <NavLink to={"/profile"} className="header__link header__profile">
+              <NavLink to={"/profile"} className={`header__link header__profile ${location==='/profile' ? "header__link_active" : undefined}`} >
                 Аккаунт
               </NavLink>
             </li>
