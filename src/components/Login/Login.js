@@ -3,7 +3,7 @@ import React from 'react';
 import './Login.css';
 import useFormWithValidation from '../../hooks/useValidationForm';
 
-function Login({handleLoginSubmit, formError, isActiveForUpdate}) {
+function Login({handleLoginSubmit, formError, isActiveForUpdate, setFormError}) {
 
     const {
         values, handleChange, errors, isValid, resetForm,
@@ -30,7 +30,7 @@ function Login({handleLoginSubmit, formError, isActiveForUpdate}) {
                         minLength="2"
                         maxLength="254"
                         required
-                        value={values.email || ''}
+                        value={values.email || ""}
                         onChange={handleChange}
                         disabled={!isActiveForUpdate}
                     />
@@ -44,7 +44,7 @@ function Login({handleLoginSubmit, formError, isActiveForUpdate}) {
                         placeholder="Пароль"
                         minLength="8"
                         required
-                        value={values.password || ''}
+                        value={values.password || ""}
                         onChange={handleChange}
                         disabled={!isActiveForUpdate}
                     />
@@ -57,6 +57,7 @@ function Login({handleLoginSubmit, formError, isActiveForUpdate}) {
             isValid={isValid}
             onSubmit = {handleSubmit}
             formError={formError}
+            setFormError={setFormError}
         />
     );
 };

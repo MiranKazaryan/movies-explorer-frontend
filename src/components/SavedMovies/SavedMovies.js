@@ -12,6 +12,8 @@ function SavedMovies({
   setIsLoading,
   isActiveForUpdate,
   setIsActiveForUpdate,
+  isClick,
+  setIsClick,
 }) {
   const [shortMovies, setShortMovies] = React.useState([]);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
@@ -110,6 +112,7 @@ function SavedMovies({
     );
     renderMovies();
     setIsLoading(false);
+    console.log(moviesToRender);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     isShort,
@@ -145,6 +148,8 @@ function SavedMovies({
           savedMovies={savedMovies}
           resultText={resultText}
           notFound={notFound}
+          click={isClick}
+          setClick={setIsClick}
         />
       )}
     </section>

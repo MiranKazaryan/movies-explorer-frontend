@@ -11,6 +11,8 @@ function MoviesCardList({
   handleDeleteMovie,
   resultText,
   notFound,
+  click,
+  setClick
 }) {
   return (
     <section className={`movies${savedMovies ? " saved-movies" : ""}`}>
@@ -24,6 +26,8 @@ function MoviesCardList({
                 handleSaveMovie={handleSaveMovie}
                 handleDeleteMovie={handleDeleteMovie}
                 savedMovies={savedMovies}
+                click={click}
+                setClick={setClick}
               />
             ))}
           </div>

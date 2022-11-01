@@ -4,6 +4,7 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import useCurrentWidth from "../../hooks/useCurrentWidth";
 import { shortMovieDuration } from "../../utils/constants";
+import { DEVICE_PARAMS } from "../../utils/constants";
 
 function Movies({
   allMovies,
@@ -16,6 +17,8 @@ function Movies({
   setIsLoading,
   isActiveForUpdate,
   setIsActiveForUpdate,
+  click,
+  setClick
 }) {
   const width = useCurrentWidth();
   const initialSearchQueryValues = localStorage.getItem("query");
@@ -39,20 +42,20 @@ function Movies({
     localStorage.getItem("query") === "" ? "" : "Ничего не найдено";
 
   function startCounntMovies(width) {
-    if (width >= 1100) {
-      return 12;
+    if (width >= DEVICE_PARAMS.desktop.width){
+      return DEVICE_PARAMS.desktop.cards.total;
     }
-    if (width >= 520) {
-      return 8;
+    if (width >= DEVICE_PARAMS.tablet.width) {
+      return DEVICE_PARAMS.tablet.cards.total;
     }
-    return 5;
+    return DEVICE_PARAMS.mobile.cards.total;
   }
 
   function addMovies(width) {
-    if (width >= 1100) {
-      return 3;
+    if (width >= DEVICE_PARAMS.desktop.width) {
+      return DEVICE_PARAMS.desktop.cards.more;
     }
-    return 2;
+    return DEVICE_PARAMS.tablet.cards.more;
   }
 
   function handleAddMovies() {
@@ -203,6 +206,7 @@ function Movies({
         isActiveForUpdate={isActiveForUpdate}
         validQuery={validQuery}
         isValid={isValid}
+        setIsValid={setIsValid}
       />
       {isLoading ? (
         <Preloader isOpen={isLoading} />
@@ -217,6 +221,8 @@ function Movies({
           resultText={resultText}
           isLoading={isLoading}
           notFound={notFound}
+          click={click}
+          setClick={setClick}
         />
       )}
     </section>

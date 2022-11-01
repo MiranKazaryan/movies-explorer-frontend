@@ -7,9 +7,10 @@ function SearchForm({
   checked,
   onCheckClick,
   initialSearchQueryValues,
-  isActiveForUpdate, 
+  isActiveForUpdate,
   validQuery,
-  isValid
+  isValid,
+  setIsValid,
 }) {
   const [query, setQuery] = useState(initialSearchQueryValues || null);
 
@@ -19,8 +20,13 @@ function SearchForm({
 
   function handleSubmit(e) {
     e.preventDefault();
-    validQuery(query);
-    onSearch(query);
+    if (query) {
+      setIsValid(true);
+      validQuery(query);
+      onSearch(query);
+    } else {
+      setIsValid(false);
+    }
   }
 
   return (
@@ -42,7 +48,13 @@ function SearchForm({
             Найти
           </button>
         </div>
-        <span className={!isValid ? "search__input-error" : "search__input-error_hidden"}>Нужно ввести ключевое слово</span>
+        <span
+          className={
+            !isValid ? "search__input-error" : "search__input-error_hidden"
+          }
+        >
+          Нужно ввести ключевое слово
+        </span>
         <FilterCheckbox checked={checked} onChange={onCheckClick} />
       </form>
     </section>

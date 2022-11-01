@@ -36,7 +36,8 @@ function App() {
   const [allMovies, setAllMovies] = useState([]);
   const [savedMovies, setSavedMovies] = useState([]);
   const [errorMessage, setErrorMessage] = useState("");
-
+  
+  const [click, setClick] = useState(false);
   useEffect(() => {
     tokenCheck();
   }, []);
@@ -108,37 +109,39 @@ function App() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [loggedIn]);
 
-  //Сохранение фильмов
-  function handleSaveMovie(movie) {
-    tokenCheck();
-    mainApi
-      .saveMovie(movie)
-      .then((movie) => {
-        setSavedMovies([movie, ...savedMovies]);
-        localStorage.setItem("saved-movies", JSON.stringify(movie));
-      })
-      .catch((err) => {
-        setErrorMessage(errorText);
-        setStatus(false);
-        setIsInfoTooltipOpen(true);
-      });
-  }
+ //Сохранение фильмов
+ function handleSaveMovie(movie) {
+  tokenCheck();
+  mainApi
+    .saveMovie(movie)
+    .then((movie) => {
+      setSavedMovies([movie, ...savedMovies]);
+      localStorage.setItem("saved-movies", JSON.stringify(movie));
+      setClick(false);
+    })
+    .catch((err) => {
+      setErrorMessage(errorText);
+      setStatus(false);
+      setIsInfoTooltipOpen(true);
+    });
+}
 
-  //Удаление фильмов из сохраненных
-  function handleDeleteMovie(movie) {
-    tokenCheck();
-    mainApi
-      .deleteMovie(movie._id)
-      .then(() => {
-        setSavedMovies((state) => state.filter((c) => c._id !== movie._id));
-        localStorage.setItem("saved-movies", JSON.stringify(savedMovies));
-      })
-      .catch((err) => {
-        setErrorMessage(errorText);
-        setStatus(false);
-        setIsInfoTooltipOpen(true);
-      });
-  }
+//Удаление фильмов из сохраненных
+function handleDeleteMovie(movie) {
+  tokenCheck();
+  mainApi
+    .deleteMovie(movie._id)
+    .then(() => {
+      setSavedMovies((state) => state.filter((c) => c._id !== movie._id));
+      localStorage.setItem("saved-movies", JSON.stringify(savedMovies));
+      setClick(false);
+    })
+    .catch((err) => {
+      setErrorMessage(errorText);
+      setStatus(false);
+      setIsInfoTooltipOpen(true);
+    });
+}
 
   function handleRegisterSubmit(name, email, password) {
     setIsActiveForUpdate(false);
@@ -228,6 +231,7 @@ function App() {
                     handleLoginSubmit={handleLoginSubmit}
                     formError={formError}
                     isActiveForUpdate={isActiveForUpdate}
+                    setFormError={setFormError}
                   />
                 )
               }
@@ -243,6 +247,7 @@ function App() {
                     handleRegisterSubmit={handleRegisterSubmit}
                     formError={formError}
                     isActiveForUpdate={isActiveForUpdate}
+                    setFormError={setFormError}
                   />
                 )
               }
@@ -276,6 +281,8 @@ function App() {
                       setIsLoading={setIsLoading}
                       isActiveForUpdate={isActiveForUpdate}
                       setIsActiveForUpdate={setIsActiveForUpdate}
+                      click={click}
+                      setClick={setClick}
                     />
                     <Footer />
                   </>
@@ -295,6 +302,8 @@ function App() {
                       setIsLoading={setIsLoading}
                       isActiveForUpdate={isActiveForUpdate}
                       setIsActiveForUpdate={setIsActiveForUpdate}
+                      isClick={click}
+                      setIsClick={setClick}
                     />
                     <Footer />
                   </>

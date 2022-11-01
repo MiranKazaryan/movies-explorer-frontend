@@ -6,35 +6,33 @@ function MoviesCard({
   savedMovies,
   handleSaveMovie,
   handleDeleteMovie,
+  click,
+  setClick
 }) {
   const isSavedMoviesPage = window.location.pathname === "/saved-movies";
   const savedMovie = savedMovies.find((i) => i.movieId === movie.id);
-  const [click, setClick] = useState(false);
 
   function handleCardClick() {
-    setClick(!click);
-    if(click === true){
-      if (savedMovie) {
-        handleDeleteMovie(savedMovie);
-        setClick(false);
-      } else {
-        handleSaveMovie({
-          nameRU: movie.nameRU || movie.nameEN,
-          image: `https://api.nomoreparties.co${movie.image.url}`,
-          trailerLink: movie.trailerLink,
-          duration: movie.duration,
-          country: movie.country || "null",
-          director: movie.director || "null",
-          year: movie.year,
-          description: movie.description,
-          thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
-          movieId: movie.id,
-          nameEN: movie.nameEN || "null",
-        });
-        setClick(false);
-      }
+    setClick(true);
+    console.log(savedMovie);
+    console.log(movie);
+     if (savedMovie) {
+      handleDeleteMovie(savedMovie);
+    } else {
+      handleSaveMovie({
+        nameRU: movie.nameRU || movie.nameEN,
+        image: `https://api.nomoreparties.co${movie.image.url}`,
+        trailerLink: movie.trailerLink,
+        duration: movie.duration,
+        country: movie.country || "null",
+        director: movie.director || "null",
+        year: movie.year,
+        description: movie.description,
+        thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
+        movieId: movie.id,
+        nameEN: movie.nameEN || "null",
+      }, movie.id);
     }
-    
   }
 
   function timeCalculate(minute) {
@@ -82,14 +80,20 @@ function MoviesCard({
             type="button"
             aria-label="Удалить"
             onClick={handleDeleteMovieFromSaved}
+            disabled={click}
           ></button>
         ) : (
           <button
-            className={`movies__save ${savedMovie ? "movies__save_active" : ""}`}
+            className={`movies__save ${
+              savedMovie ? "movies__save_active" : ""
+            }`}
             onClick={handleCardClick}
             type="button"
             aria-label="Сохранить"
-          >{!savedMovie? 'Сохранить': ''}</button>
+            disabled={click}
+          >
+            {!savedMovie ? "Сохранить" : ""}
+          </button>
         )}
       </>
     </section>
