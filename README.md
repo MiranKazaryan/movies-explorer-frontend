@@ -16,3 +16,4 @@
 Проект будет доступен по адресу http://localhost:3000
 
 Реализованный сайт доступен по адресу http://mrnkzrn.nomorepartiesxyz.ru/movies
+
