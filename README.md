@@ -1,18 +1,19 @@
-# movies-explorer-frontend
-Ссылка на пул реквест, открытый из ветки level-3 https://github.com/MiranKazaryan/movies-explorer-frontend/pull/2
-Дипломная работа.
-Это сервис, в котором можно найти фильм по запросу и сохранить в личном кабинете.
+# Дипломная работа. Movies Explorer Frontend
 
-В данной части проекта реализована вёрстка и JSX.
+Проект Movies Explorer - это сервис, в котором можно найти фильм по запросу и сохранить в личном кабинете. 
+
+В данной части проекта реализован React и JS
+
+Домен: http://mrnkzrn.nomorepartiesxyz.ru/
 
 
 Ссылка на макет https://disk.yandex.ru/d/VNKsL9XRQvFBzw
 
-Запуск проекта
-Клонировать репозиторий
-Установить зависимости npm install
-Запустить npm start
+Ссылка на Pull Request 3: https://github.com/MiranKazaryan/movies-explorer-frontend/pull/2
+
+## Запуск проекта
+1. Клонировать репозиторий
+2. Установить зависимости npm install
+3. Запустить npm start
 
 Проект будет доступен по адресу http://localhost:3000
-
-Реализованный сайт доступен по адресу http://mrnkzrn.nomorepartiesxyz.ru/movies
