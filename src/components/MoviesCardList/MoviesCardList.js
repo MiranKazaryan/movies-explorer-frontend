@@ -1,32 +1,56 @@
-import MoviesCard from '../MoviesCard/MoviesCard';
-import './MoviesCardList.css';
-import { initialMovies } from '../../constants/initialMovies';
-import { useLocation } from 'react-router-dom';
+import React from "react";
+import "./MoviesCardList.css";
+import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList() {
-  const location = useLocation();
-  const savedMovies = location.pathname === '/saved-movies';
-  const movies = location.pathname === '/movies';
-  function getMovieCards(movieCards) {
-    return movieCards.map((item, index) => (
-      <MoviesCard key={index} movie={item} />
-    ));
-  }
+function MoviesCardList({
+  movies,
+  savedMovies,
+  isMoreButton,
+  handleMoreButtonClick,
+  handleSaveMovie,
+  handleDeleteMovie,
+  resultText,
+  notFound,
+  click,
+  setClick
+}) {
   return (
-    <section className={`movies${savedMovies ? ' saved-movies' : ''}`}>
-      <ul className='movies__card-list'>
-        {
-          savedMovies ?
-          getMovieCards(initialMovies.slice(0, 3)) :
-          getMovieCards(initialMovies)
-        }
-      </ul>
-      { 
-        movies &&
-        <div className='movies__more'>
-          <button className='movies__more-button'>Ещё</button>
+    <section className={`movies${savedMovies ? " saved-movies" : ""}`}>
+      {!notFound ? (
+        <>
+          <div className="movies__card-list">
+            {movies.map((movie) => (
+              <MoviesCard
+                movie={movie}
+                key={movie.id || movie._id}
+                handleSaveMovie={handleSaveMovie}
+                handleDeleteMovie={handleDeleteMovie}
+                savedMovies={savedMovies}
+                click={click}
+                setClick={setClick}
+              />
+            ))}
+          </div>
+
+          {isMoreButton ? (
+            <div className="movies__more">
+              {" "}
+              <button
+                className="movies__more-button"
+                onClick={handleMoreButtonClick}
+              >
+                Ёще
+              </button>
+            </div>
+          ) : (
+            <div className="more-button_disable"></div>
+          )}
+        </>
+      ) : (
+        <div className="movies__card-list">
+          <p className="not-found">{resultText}</p>
         </div>
-      }      
+      )}
     </section>
   );
 }

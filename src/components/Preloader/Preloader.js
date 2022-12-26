@@ -1,13 +1,17 @@
-import './Preloader.css';
+import "./Preloader.css";
 
-function Preloader() {
+function Preloader({ isOpen }) {
   return (
-    <div className="preloader">
-      <div className="preloader__container">
-        <span className="preloader__round"></span>
-      </div>
-    </div>
-  )
-};
+    <>
+      {isOpen && (
+        <div className="preloader">
+          <div className="preloader__container">
+            <span className="preloader__round"></span>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
 
-export default Preloader
+export default Preloader;

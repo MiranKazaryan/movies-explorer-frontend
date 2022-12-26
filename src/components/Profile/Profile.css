@@ -58,7 +58,7 @@
     text-align: end;
     border: none;
     outline: none;
-    background-color: white;
+    color: #FFF;
     font-family: 'Inter', 'Arial', 'Helvetica', sans-serif;
     font-weight: 400;
     font-size: 11px;
@@ -110,6 +110,7 @@
   
   .profile__account-exit {
     font-weight: 500;
+    text-decoration: none;
     color: #ee3465;
   }
   
@@ -128,13 +129,13 @@
     cursor: pointer;
   }
   
-  .profile__form-save-button:not(.profile__form-save-button_disabled):hover {
+  .profile__form-save-button:not(.profile__form-save-button:disabled):hover {
     opacity: 0.8;
   }
   
-  .profile__form-save-button_disabled {
-    background-color: rgb(248, 248, 248);
-    color: #c2c2c2;
+  .profile__form-save-button:disabled {
+    background-color: rgb(43, 224, 128);
+    opacity: 0.4;
     cursor: default;
   }
   

@@ -1,31 +1,102 @@
-import './MoviesCard.css';
-import { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState } from "react";
+import "./MoviesCard.css";
 
-function MoviesCard({ movie }) {
-  const location = useLocation();
-  const [isSaved, setIsSaved] = useState(false);
-  const {nameRU, duration, image} = movie;
-  const savedMoviesPage = location.pathname === '/saved-movies';
-  const moviesPage = location.pathname === '/movies';
-  const movieButtonClassName = 
-    `movies__save${
-      isSaved && moviesPage ? ' movies__save_active': ''}${
-      savedMoviesPage ? ' movies__delete' : ''}`;
+function MoviesCard({
+  movie,
+  savedMovies,
+  handleSaveMovie,
+  handleDeleteMovie,
+  click,
+  setClick
+}) {
+  const isSavedMoviesPage = window.location.pathname === "/saved-movies";
+  const savedMovie = savedMovies.find((i) => i.movieId === movie.id);
+
+  function handleCardClick() {
+    setClick(true);
+    console.log(savedMovie);
+    console.log(movie);
+     if (savedMovie) {
+      handleDeleteMovie(savedMovie);
+    } else {
+      handleSaveMovie({
+        nameRU: movie.nameRU || movie.nameEN,
+        image: `https://api.nomoreparties.co${movie.image.url}`,
+        trailerLink: movie.trailerLink,
+        duration: movie.duration,
+        country: movie.country || "null",
+        director: movie.director || "null",
+        year: movie.year,
+        description: movie.description,
+        thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
+        movieId: movie.id,
+        nameEN: movie.nameEN || "null",
+      }, movie.id);
+    }
+  }
+
+  function timeCalculate(minute) {
+    let hour = Math.floor(minute / 60);
+    let min = minute % 60;
+
+    if (hour === 0) {
+      return `${min} мин`;
+    }
+
+    return `${hour}ч ${min}мин`;
+  }
+
+  const handleDeleteMovieFromSaved = (evt) => {
+    evt.preventDefault();
+    evt.stopPropagation();
+    handleDeleteMovie(movie);
+  };
+
   return (
-    <li className='movies__card'>
-      <div className='movies__heading'>
-        <h2 className='movies__name'>{nameRU}</h2>
-        <p className='movies__duration'>{`${duration} минут`}</p>      
+    <section className="movies__card">
+      <div className="movies__heading">
+        <h3 className="movies__name">{movie.nameRU}</h3>
+        <p className="movies__duration">{timeCalculate(movie.duration)}</p>
       </div>
-      <img 
-        className='movies__preview'
-        src={image}
-        alt={nameRU} />
-      <button className={movieButtonClassName} onClick={() => {
-        setIsSaved(!isSaved);
-      }}>{!isSaved && moviesPage && 'Сохранить'}</button>
-    </li>
+      <a
+        href={movie.trailerLink !== undefined ? movie.trailerLink : "*"}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img
+          className="movies__preview"
+          src={`${
+            !isSavedMoviesPage
+              ? `https://api.nomoreparties.co${movie.image.url}`
+              : movie.image
+          }`}
+          alt={movie.nameRU}
+        />
+      </a>
+      <>
+        {isSavedMoviesPage ? (
+          <button
+            className="movies__save movies__delete"
+            type="button"
+            aria-label="Удалить"
+            onClick={handleDeleteMovieFromSaved}
+            disabled={click}
+          ></button>
+        ) : (
+          <button
+            className={`movies__save ${
+              savedMovie ? "movies__save_active" : ""
+            }`}
+            onClick={handleCardClick}
+            type="button"
+            aria-label="Сохранить"
+            disabled={click}
+          >
+            {!savedMovie ? "Сохранить" : ""}
+          </button>
+        )}
+      </>
+    </section>
   );
 }
 

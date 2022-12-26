@@ -23,6 +23,9 @@
   font-size: 15px;
   line-height: 18px;
   color: #FFF;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .movies__duration {
@@ -35,7 +38,8 @@
 }
 
 .movies__preview {
-  width: 100%;
+  width: 342px;
+  height: 190px;
 }
 
 .movies__save {
